@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="LoginXF.App.Views.CreateUserPage"
+             Title="{Binding Title}"
+             Visual="Material">
+
+    <ContentPage.Content>
+        <ScrollView>
+
+            <StackLayout Padding="30"
+                         VerticalOptions="CenterAndExpand">
+
+                <Entry Placeholder="Name"
+                       Text="{Binding Name}"/>
+
+                <Entry Placeholder="Email"
+                       Text="{Binding Email}"/>
+
+                <Entry Placeholder="Telephone"
+                       Text="{Binding Telephone}"/>
+
+                <Entry Placeholder="Password"
+                       IsPassword="True"
+                       Text="{Binding Password}"/>      
+
+                <Entry Placeholder="Confirm Password" 
+                       IsPassword="True"
+                       Text="{Binding PasswordConfirmation}" />
+
+                <Label Text="Date Of Birth"/>
+
+                <DatePicker Date="{Binding BirthDate}"/>
+
+                <Button Text="Create"
+                        Command="{Binding CreateUserCommand}"/>
+
+            </StackLayout>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:entities="clr-namespace:LoginXF.App.Entities"
+             x:Class="LoginXF.App.Views.MainPage"
+             Title="{Binding Title}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" 
+                Text="Create New User"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                HeightRequest="50"
+                WidthRequest="300"
+                Command="{Binding CreateUserCommand}"/>
+
+        <ListView x:Name="UsersList"
+                  Grid.Row="1" 
+                  ItemsSource="{Binding Users}"
+                  HorizontalOptions="Center"
+                  VerticalOptions="Center"
+                  Margin="20">
+
+            <!--<d:ListView.ItemsSource>
+                <x:Array Type="{x:Type entities:User}">
+                    <entities:User Name="Felipe Muniz" />
+                    <entities:User Name="Marcelo Doidera"/>
+                    <entities:User Name="Marcial Do Licor"/>
+                </x:Array>
+            </d:ListView.ItemsSource>-->
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="7*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Label Grid.Column="0"
+                                   Text="{Binding Name}"
+                                   VerticalOptions="Center"
+                                   FontSize="Large"
+                                   FontAttributes="Bold"/>
+                            
+                            <Button Grid.Column="1"
+                                    Text="Remove"
+                                    CommandParameter="{Binding Id}"
+                                    Command="{Binding Source={x:Reference UsersList}, Path=BindingContext.DeleteUserCommand}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+
+    </Grid>
+
+</ContentPage>
